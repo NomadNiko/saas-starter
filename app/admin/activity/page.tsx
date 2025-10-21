@@ -42,9 +42,9 @@ export default function ActivityPage() {
   const [actionFilter, setActionFilter] = useState<string>('all');
 
   // Get unique action types
-  const actionTypes = useMemo(() => {
+  const actionTypes = useMemo<string[]>(() => {
     if (!logs) return [];
-    const types = new Set(logs.map((log: any) => log.action));
+    const types = new Set<string>(logs.map((log: any) => log.action));
     return ['all', ...Array.from(types)];
   }, [logs]);
 
