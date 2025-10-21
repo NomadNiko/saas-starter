@@ -86,7 +86,9 @@ export async function GET(request: NextRequest) {
     });
 
     await setSession(user);
-    return NextResponse.redirect(new URL('/dashboard', baseUrl));
+    // Redirect admin users to admin panel, regular users to dashboard
+    const redirectPath = user.role === 'admin' ? '/admin' : '/dashboard';
+    return NextResponse.redirect(new URL(redirectPath, baseUrl));
   } catch (error) {
     console.error('Error handling successful checkout:', error);
     return NextResponse.redirect(new URL('/error', baseUrl));

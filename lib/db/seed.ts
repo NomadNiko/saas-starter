@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import { stripe } from '../payments/stripe';
 import {
   connectDB,
@@ -60,7 +62,7 @@ async function seed() {
   const user = await createUser({
     email: email,
     passwordHash: passwordHash,
-    role: UserRole.OWNER,
+    role: UserRole.ADMIN,
   });
 
   console.log('Initial user created with ID:', user._id.toString());

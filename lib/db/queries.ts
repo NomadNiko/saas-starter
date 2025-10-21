@@ -29,6 +29,10 @@ export {
   createTeam,
   addTeamMember,
   removeTeamMember,
+  // Admin queries
+  getAllUsersForAdmin,
+  getAllTeamsForAdmin,
+  getAdminStats,
 } from './mongodb/queries';
 
 // Re-export types for query results

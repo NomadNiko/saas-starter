@@ -113,7 +113,8 @@ export const signIn = validatedAction(signInSchema, async (data, formData) => {
     return createCheckoutSession({ team: foundTeam, priceId });
   }
 
-  redirect('/dashboard');
+  // Redirect admin users to admin panel, regular users to dashboard
+  redirect(foundUser.role === 'admin' ? '/admin' : '/dashboard');
 });
 
 const signUpSchema = z.object({
@@ -214,7 +215,8 @@ export const signUp = validatedAction(signUpSchema, async (data, formData) => {
     return createCheckoutSession({ team: createdTeam, priceId });
   }
 
-  redirect('/dashboard');
+  // Redirect admin users to admin panel, regular users to dashboard
+  redirect(createdUser.role === 'admin' ? '/admin' : '/dashboard');
 });
 
 export async function signOut() {
